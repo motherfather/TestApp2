@@ -16,12 +16,13 @@
         android:id="@+id/accept"
         android:text="받아오기"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80sp"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70sp">
+        android:layout_marginTop="140sp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,4 +36,30 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:id="@+id/editName" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Country"
+        android:layout_toRightOf="@+id/editName"
+        android:layout_toEndOf="@+id/editName"
+        android:id="@+id/editCountry" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Twitter"
+        android:layout_toRightOf="@+id/editCountry"
+        android:layout_toEndOf="@+id/editCountry"
+        android:id="@+id/editTwitter" />
+
 </RelativeLayout>
