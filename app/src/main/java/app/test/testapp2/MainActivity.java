@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
     static String str = "";
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HttpAsyncTask httpAsyncTask = new HttpAsyncTask(MainActivity.this);
-                httpAsyncTask.execute("http://hmkcode.appspot.com/jsonservlet", editName.getText().toString(), editCountry.getText().toString(), editTwitter.getText().toString());
+                httpAsyncTask.execute("http://hmkcode.appspot.com/jsonservlet", editName.getText().toString(), "hi", "bye");
+//                httpAsyncTask.execute("http://192.168.1.15:8088/myapp-api/user/list");
             }
         });
     }
@@ -58,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
+        protected void onPre
+
+        @Override
         protected String doInBackground(String... strings) {
             Person person = new Person();
             person.setName(strings[1]);
@@ -68,23 +73,23 @@ public class MainActivity extends AppCompatActivity {
                 URL url = new URL(strings[0]);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
 
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.accumulate("name", person.getName());
-                jsonObject.accumulate("country", person.getCountry());
-                jsonObject.accumulate("twitter", person.getTwitter());
+//                JSONObject jsonObject = new JSONObject();
+//                jsonObject.accumulate("name", person.getName());
+//                jsonObject.accumulate("country", person.getCountry());
+//                jsonObject.accumulate("twitter", person.getTwitter());
 
-                httpURLConnection.setRequestProperty("content-type", "application/json");
+//                httpURLConnection.setRequestProperty("content-type", "application/json");
                 httpURLConnection.setRequestProperty("accept", "application/json");
 
-                httpURLConnection.setDoOutput(true);
+//                httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
 
                 InputStream is = httpURLConnection.getInputStream();
-                OutputStream os = httpURLConnection.getOutputStream();
+//                OutputStream os = httpURLConnection.getOutputStream();
 
-                String json = jsonObject.toString();
-                os.write(json.getBytes());
-                os.flush();
+//                String json = jsonObject.toString();
+//                os.write(json.getBytes());
+//                os.flush();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
                 String line = "";
@@ -105,8 +110,13 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        JSONArray jsonArray = new JSONArray(str);
-                        mainActivity.textView.setText(jsonArray.toString());
+                        JSONObject json = new JSONObject(str);
+//                        Iterator<?> key = json.keys();
+//                        while (key.hasNext()) {
+//                            String k = (String)key.next();
+//                            mainActivity.textView.setText(k.toString());
+//                        }
+                            mainActivity.textView.setText(json.toString());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
